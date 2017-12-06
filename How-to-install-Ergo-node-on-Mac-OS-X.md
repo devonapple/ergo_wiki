@@ -20,4 +20,4 @@ Download the latest version of ergo.jar and create the ergo.conf configuration t
 
 Just open it with your favorite text editor, pour a cup of tea and read [the documentation of the configuration file](https://github.com/ergoplatform/ergo/wiki/Node-Configuration-File).
 
-Then start Terminal app `Terminal.app`, navigate to the folder with the jar file with the command `cd ~/waves` and start waves node with command `java -jar waves.jar waves.conf`.
+Then start Terminal app `Terminal.app`, navigate to the folder with the jar file with the command `cd ~/ergo` and start ergo node with command `java -jar ergo.jar ergo.conf`.
