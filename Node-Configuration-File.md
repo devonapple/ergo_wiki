@@ -223,9 +223,9 @@ In `scorex.network` section P2P network related settings could be set.
 
 Using `declaredAddress` parameter you can set the external IP address and port number of the node. It's necessary to work behind NAT in most cloud hosting, where the machine does not interface directly with the external address. If you do not specify it, then your node connects to the P2P network, but it won't listen to incoming connections so other nodes will not be able to connect. Other nodes are connected to your node using these data. The format of this parameter is "[ip-address]:[port]".
 
-Using parameter `bindAddress` you can set the IP address of local network interface on which Waves Node will accept incoming connections. By default, node binds to "0.0.0.0" that means that it will listen on all available network adapters. 
+Using parameter `bindAddress` you can set the IP address of local network interface on which Ergo Node will accept incoming connections. By default, node binds to "0.0.0.0" that means that it will listen on all available network adapters. 
 
-Use `port` parameter to set the network port number to which other Waves nodes will connect. Check that the port is reachable from outside otherwise, your node will connect to P2P network only using outgoing connections. If this the port is taken by other application, your node won't start. 
+Use `port` parameter to set the network port number to which other Ergo nodes will connect. Check that the port is reachable from outside otherwise, your node will connect to P2P network only using outgoing connections. If this the port is taken by other application, your node won't start. 
 
 Parameter `nodeName` could be used to set the name of your node visible to other participants of the P2P network. The name transmitted during initial handshake. In the default configuration, this parameter is commented out, which leads to random name generation. 
 
@@ -253,11 +253,11 @@ Parameter `connectionTimeout` could be used to change the network communication 
 
 Using `handshakeTimeout` parameter it is possible to set time period to wait for reply during handshake. In case of no reply the peer will be blacklisted.
 
-Using parameters starts with `upnp` you can set the UPnP settings. Actually, those settings are useful only if you ran your Waves node on the home network where the node could ask your router to establish a tunnel. By default, this functionality is disabled. Use `upnpEnabled` parameter to enable this functionality.
+Using parameters starts with `upnp` you can set the UPnP settings. Actually, those settings are useful only if you ran your Ergo node on the home network where the node could ask your router to establish a tunnel. By default, this functionality is disabled. Use `upnpEnabled` parameter to enable this functionality.
 
 ### Wallet settings
 
-In `wallet` section you can configure wallet built in Waves node.
+In `wallet` section you can configure wallet built in Ergo node.
 
 Use `walletDir` parameter to set the path to the wallet folder. By default, the path to the file is calculated relatively to the base user directory. 
 
