@@ -22,12 +22,12 @@ But if you get a error, then check your installation and try find some better tu
 
 # Installation of jar package
 
-Download latest version of waves.jar to any folder, for example `/opt/ergo`.
+Download latest version of ergo.jar to any folder, for example `/opt/ergo`.
 
 Then create the configuration file, for example `/opt/ergo/ergo.conf`.
 
 Just open it via your favorite text editor, pour a cup of tea and read [the documentation of the configuration file](https://github.com/ergoplatform/ergo/wiki/Node-Configuration-File).
 
-Then start console, navigate to the folder with the jar file with the command `cd /opt/ergo` and start waves node with command `java -jar ergo.jar ergo.conf`.
+Then start console, navigate to the folder with the jar file with the command `cd /opt/ergo` and start ergo node with command `java -jar ergo.jar ergo.conf`.
 
 Now you can write a script (bash, zsh or smtn) to run the node, which you like and use it! :)
