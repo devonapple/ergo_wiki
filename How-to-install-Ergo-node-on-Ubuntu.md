@@ -8,7 +8,7 @@ sudo apt-get update
 sudo apt-get -y install oracle-java8-installer
 ```
 
-Now you can check your JRE installation. Run start console and execute command `java -version`. If you see
+Proceed to check JRE version. Start Console and execute command `java -version`. If you see
 
 ```
 java version "1.8.0_74"
@@ -16,18 +16,18 @@ Java(TM) SE Runtime Environment (build 1.8.0_74-b02)
 Java HotSpot(TM) 64-Bit Server VM (build 25.74-b02, mixed mode)
 ```
 
-then it good, you can move to the next step!
+then installation was successful. Please proceed to the next step!
 
-But if you get a error, then check your installation and try find some better tutorials in google.
+If you get an error check your installation or search online for a solution to the particular error prompted.
 
 # Installation of jar package
 
-Download latest version of ergo.jar to any folder, for example `/opt/ergo`.
+Download latest version of (ergo.jar)[https://github.com/ergoplatform/ergo/releases] to any folder, for example `/opt/ergo`.
 
-Then create the configuration file, for example `/opt/ergo/ergo.conf`.
+Now your configuration file can be created, for example `/opt/ergo/ergo.conf` .
 
 Just open it via your favorite text editor, pour a cup of tea and read [the documentation of the configuration file](https://github.com/ergoplatform/ergo/wiki/Node-Configuration-File).
 
-Then start console, navigate to the folder with the jar file with the command `cd /opt/ergo` and start ergo node with command `java -jar ergo.jar ergo.conf`.
+Start Console and execute cmd.exe command, navigate to the folder with the jar file by executing the command `cd /opt/ergo` . Your Ergo node can now be booted up by executing the command `java -jar ergo.jar ergo.conf` .
 
-Now you can write a script (bash, zsh or smtn) to run the node, which you like and use it! :)
+Lastly proceed to write a script (with bash, zsh or smtn; whichever is your favorite) to customize your node's operation! :)
