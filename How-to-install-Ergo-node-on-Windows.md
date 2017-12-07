@@ -20,7 +20,7 @@ If you get an error check your installation or search online for a solution to t
 
 # Download Ergo package and configure the application
 
-Download the latest version of (ergo.jar)[https://github.com/ergoplatform/ergo/releases] and create ergo.conf file to any folder, for example `C:/ergo` .
+Download the latest version of [ergo.jar](https://github.com/ergoplatform/ergo/releases) and create ergo.conf file to any folder, for example `C:/ergo` .
 
 Lastly, Open Run Prompt and execute cmd.exe command, navigate to the folder with the jar file by executing the command `cd C:/ergo` . Your Ergo node can now be booted up by executing the command `java -jar ergo.jar ergo.conf` .
 
