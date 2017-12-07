@@ -22,7 +22,7 @@ If you get an error check your installation or search online for a solution to t
 
 # Installation of jar package
 
-Download latest version of (ergo.jar)[https://github.com/ergoplatform/ergo/releases] to any folder, for example `/opt/ergo`.
+Download latest version of [ergo.jar](https://github.com/ergoplatform/ergo/releases) to any folder, for example `/opt/ergo`.
 
 Now your configuration file can be created, for example `/opt/ergo/ergo.conf` .
 
