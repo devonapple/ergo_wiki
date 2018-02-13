@@ -1,6 +1,8 @@
-## Actual for version 0.1.0
+## Actual for version 0.2.1
 
-Below you can find a complete Ergo Node configuration file. This is the default configuration shipped with the application. It is possible to overwrite any parameters by providing an additional configuration file. You can pass an additional configuration file by providing the path to it as the first command line parameter then starting Ergo Node application.
+Below you can find a complete Ergo Node configuration file. This is the default configuration shipped with the application.
+It is possible to overwrite any parameters by providing an additional configuration file. You can pass an additional configuration file
+by providing the path to it as the first command line parameter when starting Ergo Node application.
 
 ```
 ergo {
@@ -44,7 +46,7 @@ ergo {
     keepPoolSize = 1
   }
 
-  #Chain-specific settings. Change only if you are going to launch a new chain!
+  # Chain-specific settings. Change only if you are going to launch a new chain!
   chain {
 
     # Desired time interval between blocks
@@ -56,14 +58,15 @@ ergo {
     # Number of last epochs that will  be used for difficulty recalculation
     useLastEpochs = 100
 
-    //Proof-of-Work algorithm and its parameters. Possible options are "fake" and "equihash".
+    # Proof-of-Work algorithm and its parameters. Possible options are "fake" and "equihash".
     poWScheme {
       powType = "equihash"
-      n = 96 //used by Equihash
-      k = 5  //used by Equihash
+      n = 96 # used by Equihash
+      k = 5  # used by Equihash
     }
   }
 }
+
 scorex {
 
   # Wallet settings
@@ -85,45 +88,27 @@ scorex {
   # Node's REST API settings
   restApi {
     # Network address to bind to
-    bindAddress = "127.0.0.1"
-
-    # Port to listen to REST API requests
-    port = 6886
+    bindAddress = "0.0.0.0:9051"
 
     # Hash of API key string
-    apiKeyHash = ""
+    # apiKeyHash = ""
 
-    # Enable/disable CORS support
-    corsAllowed = false
+    # Enable/disable CORS support. This is an optional param.
+    # It would allow CORS in case if this setting is set.
+    # If you omit this setting then CORS will be prohibited.
+    corsAllowedOrigin = "*"
 
     # request processing timeout
     timeout = 5s
-
-    # Project info to show in swagger
-    swaggerInfo {
-      description = "The Web Interface to the Scorex API",
-      version = "",
-      title = "Scorex API",
-      termsOfService = "License: Creative Commons CC0",
-      contact {
-        name = "Alex"
-        url = "https://scorex-dev.groups.io/g/main"
-        email = "alex.chepurnoy@iohk.io"
-      }
-      license {
-        name = "License: Creative Commons CC0"
-        url = "https://github.com/ScorexProject/Scorex/blob/master/COPYING"
-      }
-    }
   }
 
   # P2P Network settings
   network {
     # Node name to send during handshake
-    nodeName = "My node"
+    nodeName = "ergo-testnet"
 
     # Network address
-    bindAddress = "0.0.0.0"
+    bindAddress = "0.0.0.0:9001"
 
     # String with IP address and port to send as external address during handshake. Could be set automatically if UPnP
     # is enabled.
@@ -143,22 +128,16 @@ scorex {
     # to `bind-address:port`. Please note, however, that this setup is not recommended.
     # declaredAddress = ""
 
-    # Port number
-    port = 9068
-
-    # Node nonce to send during handshake. Should be different if few nodes runs on the same external IP address. Comment this out to set random nonce.
-    # nodeNonce = 12345
-
     # Add delay for sending message
     # addedMaxDelay = 0ms
 
-    networkChunkSize = 10
+    networkChunkSize = 400
 
     # Accept only local connections
     localOnly = false
 
     # List of IP addresses of well known nodes.
-    knownPeers = []
+    knownPeers = ["88.198.13.202:9001","139.59.254.126:9001","159.203.94.149:9001"]
 
     # Number of network connections
     maxConnections = 20
@@ -178,15 +157,15 @@ scorex {
     handshakeTimeout = 2s
 
     # Network delivery timeout
-    deliveryTimeout = 2s
+    deliveryTimeout = 8s
 
-    maxDeliveryChecks = 1
+    maxDeliveryChecks =  2
 
     # Network version send in handshake
-    appVersion = 0.0.1
+    appVersion = 0.2.1
 
     # Network agent name
-    agentName = "scorex"
+    agentName = "ergoref"
 
     # Maximum income package size
     maxPacketLen = 1048576
@@ -197,8 +176,31 @@ scorex {
     # Synchronization interval
     syncInterval = 15s
 
+    # Synchronization interval for stable regime
+    syncIntervalStable = 20s
+
+    # Synchronization timeout
+    syncTimeout = 5s
+
     # Synchronization status update interval
-    syncStatusRefresh = 2m
+    syncStatusRefresh = 30s
+
+    # Synchronization status update interval for stable regime
+    syncStatusRefreshStable = 1m
+
+    # Network controller timeout
+    controllerTimeout = 5s
+  }
+
+  ntp {
+    # NTP server address
+    server = "pool.ntp.org"
+
+    # update time rate
+    updateEvery = 30m
+
+    # server answer timeout
+    timeout = 30s
   }
 
 }
@@ -206,69 +208,85 @@ scorex {
 
 ## Ergo configuration section
 
-Root configuration section `ergo` holds essential application parameters and other configuration subsections. There are also another one root section `scorex`, it holds the parameters inherited from the [Scorex project](https://github.com/ScorexFoundation/Scorex).
+Root configuration section `ergo` holds essential application parameters and other configuration subsections.
+There is also another one root section `scorex` that holds the parameters inherited from the [Scorex project](https://github.com/ScorexFoundation/Scorex).
 
-Using parameter `directory` it is possible to set a path to the base application directory. Also it is possible to use environment variables to set configuration parameters. For example, by default, the base directory constructed relative to the user's `HOME` environment variable. Please, do not enclose environment variables references in quotes, in this case, they will be handled as strings and won't be resolved. 
+Using parameter `directory` it is possible to set a path to the base application directory.
+It is also possible to use environment variables to override configuration parameters.
+For example, by default the base directory is being constructed relatively to the user's `HOME` environment variable.
+Please do not enclose references to environment variables into quotation marks, otherwise they will be handled as strings and won't be resolved.
 
-***
+*** 
 
-Note for Windows users. 
+#### Note for Windows users
 
-Often on Windows, the HOME environment variable is not set. Please, replace `${HOME}` with `${HOMEPATH}` or `${APPDATA}` in your additional configuration file.
-Also, you should remember that Windows' environment variables names are case sensitive. 
+`HOME` environment variable is not often set in Windows. Please replace `${HOME}` with `${HOMEPATH}` or `${APPDATA}` in your configuration file.
+You should also remember that environment variables names are case sensitive in Windows.
+
+*** 
 
 ### Network settings
 
-In `scorex.network` section P2P network related settings could be set. 
+In `scorex.network` section P2P network related settings could be set.
 
 Using `declaredAddress` parameter you can set the external IP address and port number of the node. It's necessary to work behind NAT in most cloud hosting, where the machine does not interface directly with the external address. If you do not specify it, then your node connects to the P2P network, but it won't listen to incoming connections so other nodes will not be able to connect. Other nodes are connected to your node using these data. The format of this parameter is "[ip-address]:[port]".
 
-Using parameter `bindAddress` you can set the IP address of local network interface on which Ergo Node will accept incoming connections. By default, node binds to "0.0.0.0" that means that it will listen on all available network adapters. 
+Using parameter `bindAddress` you can set the IP address of local network interface on which Ergo Node will accept incoming connections.
+By default, node binds to "0.0.0.0" that means that it will listen on all available network adapters.
 
-Use `port` parameter to set the network port number to which other Ergo nodes will connect. Check that the port is reachable from outside otherwise, your node will connect to P2P network only using outgoing connections. If this the port is taken by other application, your node won't start. 
 
-Parameter `nodeName` could be used to set the name of your node visible to other participants of the P2P network. The name transmitted during initial handshake. In the default configuration, this parameter is commented out, which leads to random name generation. 
+***
+#### Note about Internet Address settings
 
-Parameter `nodeNonce` is sent during a handshake. By default, it's not set and nonce will be generated randomly. This value is used to distinguish nodes connected from one IP address. 
-
-The `knownPeers` parameter stores the list of bootstrap nodes to which your node will establish outgoing connections while initializing. 
+Internet Address settings have `<ip-adderss>:<port>` format.
+Note the `<port>` part at the very end of the address after the colon.
 
 ***
 
-Note about time parameter values.
+For the `bindAddress` setting port part is used to set the network port number to which other Ergo nodes will connect.
+Please ensure that the port is reachable from outside, otherwise your node will have only outgoing connections to P2P network.
+If the given port is taken by other application, your node won't start.
 
-All time span parameters are set in milliseconds. But duration units can be used to shorten the value. Supported units are:
+Parameter `nodeName` could be used to set the name of your node visible to other participants of the P2P network. The name transmitted during initial handshake. In the default configuration, this parameter is commented out, which leads to random name generation.
+
+The `knownPeers` parameter stores the list of bootstrap nodes to which your node will establish outgoing connections while initializing.
+
+***
+
+#### Note about time settings
+
+All time span parameters are set in milliseconds. You can also use duration units to shorten their values. Supported units are:
 * s, second, seconds
 * m, minute, minutes
 * h, hour, hours
 * d, day, days
 
-For usage examples see the default configuration file above. 
+For usage examples see the default configuration file above.
 
 ***
 
 Use `maxConnections` parameter to set the maximum number of simultaneous connections handled by the node.
 
-Parameter `connectionTimeout` could be used to change the network communication timeout. 
+Parameter `connectionTimeout` could be used to change the network communication timeout.
 
 Using `handshakeTimeout` parameter it is possible to set time period to wait for reply during handshake. In case of no reply the peer will be blacklisted.
 
-Using parameters starts with `upnp` you can set the UPnP settings. Actually, those settings are useful only if you ran your Ergo node on the home network where the node could ask your router to establish a tunnel. By default, this functionality is disabled. Use `upnpEnabled` parameter to enable this functionality.
+Using parameters that starts with `upnp` you can configure the UPnP settings. Actually, those settings are useful only if you ran your Ergo node on the home network where the node could ask your router to establish a tunnel. By default, this functionality is disabled. Use `upnpEnabled` parameter to enable this functionality.
 
 ### Wallet settings
 
-In `wallet` section you can configure wallet built in Ergo node.
+In `wallet` section you can configure the wallet built in Ergo node.
 
-Use `walletDir` parameter to set the path to the wallet folder. By default, the path to the file is calculated relatively to the base user directory. 
+Use `walletDir` parameter to set the path to the wallet folder. By default, the path to the file is calculated relatively to the base user directory.
 
 Parameter `password` could be used to set the password string to protect the wallet file.
 
 Using `seed` parameter you could recreate an existing walled on a new node. Provide the BASE58 string of your seed here. If you don't have any existing wallet comment out this parameter and start the node. During the first run, the application will create a new wallet with a random seed for you. In this case, the seed will be displayed in the application log. If you miss it or if you don't want to check the log files.
 
 ***
-Attention!
+#### Attention!
 
-The wallet is a critical part of your node. Better to create its file in a safe and protected location. Don't forget to backup your wallet's file. 
+The wallet is a critical part of your node. You should better store wallet's file in a safe and protected location. Don't forget to backup your wallet's file.
 
 It's recommended to remove the seed from the configuration file immediately after the start of the node. If an attacker gains access to this seed string, he has access to all your funds on all your addresses!
 
@@ -282,7 +300,7 @@ Use `blockInterval` parameter to set desired time interval between blocks.
 
 Parameter `epochLength` used to set the length of an epoch in difficulty recalculation. 1 means difficulty recalculation every block
 
-In `useLastEpochs` parameter stored a number of last epochs that will be used for difficulty recalculation.
+`useLastEpochs` parameter stores a number of last epochs that will be used for difficulty recalculation.
 
 You can change the PoW algo or related parameters using `poWScheme` section.
 
@@ -290,11 +308,11 @@ You can change the PoW algo or related parameters using `poWScheme` section.
 
 In section `ergo.node` it is possible to configure parameters of the node regime.
 
-Use `enable` parameter to enable or disable block generation on the node. By default, it's disable.
+Use `enable` parameter to enable or disable block generation on the node. By default, it's disabled.
 
-Disabled `offlineGeneration` parameter will start mining as soon as it connects to the first peer in the P2P network. Setting this parameter to `true` will enable off-line generation.
+Node with disabled `offlineGeneration` parameter will start mining as soon as it connects to the first peer in the P2P network. Setting this parameter to `true` will enable off-line generation.
 
-Using `miningDelay` parameter you tune your node's mining delay after finding a new block. 
+Using `miningDelay` parameter you can tune your node's mining delay after finding a new block.
 
 ### TODO other parameters
 
@@ -302,15 +320,15 @@ Using `miningDelay` parameter you tune your node's mining delay after finding a 
 
 In section `scorex.rest-api` you can set the node's REST API parameters.
 
-Parameter `bindAddress` could be used to select network interface on which REST API will accept incoming connections. 
-
-Parameter `port` could be used to change the port number on which REST API will await connections.
+Parameter `bindAddress` could be used to select network interface on which REST API will accept incoming connections.
+The `:<port>` part could be used to change the port number, which REST API will listen for connections.
 
 ***
 
-Attention!
+#### Attention!
 
-For better security, do not change `bindAddress` from "127.0.0.1" if you do not know what you're doing! For external access, you should use instead [Nginx's proxy_pass module](http://nginx.org/ru/docs/http/ngx_http_proxy_module.html) or [SSH port-forwarding](http://blog.trackets.com/2014/05/17/ssh-tunnel-local-and-remote-port-forwarding-explained-with-examples.html).
+For the better security, do not change `bindAddress` from "127.0.0.1" if you do not know what you're doing!
+For the external access you should use [Nginx's proxy_pass module](http://nginx.org/ru/docs/http/ngx_http_proxy_module.html) or [SSH port-forwarding](http://blog.trackets.com/2014/05/17/ssh-tunnel-local-and-remote-port-forwarding-explained-with-examples.html) instead.
 
 ***
 
@@ -318,10 +336,12 @@ Use `api-key-hash` parameter to set the hash of your API key. The API key is use
 
 ***
 
-Attention!
+#### Attention!
 
 API key is transmitted in the HTTP header as unprotected plain text! An attacker could intercept it in network transit and use it to transfer your money to any address! So you have to protect the transmission using HTTPS or use SSH port forwarding.
 
 ***
 
-Parameter `cors` could be used to enable or disable CORS support in REST API. CORS allows to safely resolve queries to other domains outside the one running the node. It's necessary for Swagger and Lite client. You can read about it [here](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing).
+Parameter `corsAllowedOrigin` could be used to enable or disable CORS support in REST API.
+CORS allows to safely resolve queries to other domains outside the one running the node.
+It's necessary for Swagger and Lite client. You can read about it [here](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing).
