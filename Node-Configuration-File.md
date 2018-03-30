@@ -62,7 +62,7 @@ ergo {
     useLastEpochs = 100
 
     # Proof-of-Work algorithm and its parameters. Possible options are "fake" and "equihash".
-    poWScheme {
+    powScheme {
       powType = "equihash"
       n = 96 # used by Equihash
       k = 5  # used by Equihash
@@ -305,7 +305,7 @@ Parameter `epochLength` used to set the length of an epoch in difficulty recalcu
 
 `useLastEpochs` parameter stores a number of last epochs that will be used for difficulty recalculation.
 
-You can change the PoW algo or related parameters using `poWScheme` section.
+You can change the PoW algo or related parameters using `powScheme` section.
 
 ### Node settings
 
