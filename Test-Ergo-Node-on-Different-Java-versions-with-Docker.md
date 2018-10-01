@@ -2,7 +2,7 @@
 
         git clone https://github.com/ergoplatform/ergo
         cd ergo
-        sbt sbt reload clean assembly
+        sbt reload clean assembly
 
 2. Then, copy your Ergo jar and application.conf to some location, for example `/tmp/ergo`:
 
@@ -13,7 +13,7 @@
 
 4. Test your node`s .jar file in different environments:
 
-        sudo docker run --rm -p 9002:9002 -p 9052:9052 \
+        sudo docker run --rm -p 9006:9006 -p 9052:9052 \
           -v /tmp/ergo/ergo.jar:/ergo.jar:ro \
           -v /tmp/ergo/application.conf:/application.conf \
           openjdk:8-jre-alpine /usr/bin/java -jar /ergo.jar /application.conf
