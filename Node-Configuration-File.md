@@ -208,11 +208,11 @@ Using parameters that starts with `upnp` you can configure the UPnP settings. Ac
 
 In `wallet` section you can configure the wallet built in Ergo node.
 
-Use `walletDir` parameter to set the path to the wallet folder. By default, the path to the file is calculated relatively to the base user directory.
+Use `dlogSecretsNumber` parameter to specify how many Schorr secret keys (w for the g^w public key) to generate.
 
-Parameter `password` could be used to set the password string to protect the wallet file.
+Use `scanningInterval` parameter to set an interval of re-scaning uncertain boxes.
 
-Using `seed` parameter you could recreate an existing walled on a new node. Provide the BASE58 string of your seed here. If you don't have any existing wallet comment out this parameter and start the node. During the first run, the application will create a new wallet with a random seed for you. In this case, the seed will be displayed in the application log. If you miss it or if you don't want to check the log files.
+Using `seed` parameter you could recreate an existing walled on a new node. If you don't have any existing wallet comment out this parameter and start the node. During the first run, the application will create a new wallet with a random seed for you. In this case, the seed will be displayed in the application log.
 
 ***
 #### Attention!
