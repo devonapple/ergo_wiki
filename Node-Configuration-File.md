@@ -1,4 +1,4 @@
-## Actual for version 0.2.1
+## Actual for version 1.6.1
 
 Below you can find a complete Ergo Node configuration file. This is the default configuration shipped with the application.
 It is possible to overwrite any parameters by providing an additional configuration file. You can pass an additional configuration file
@@ -11,7 +11,6 @@ ergo {
 
   # Settings for node view holder regime. See papers.yellow.ModifiersProcessing.md
   node {
-
     # State type.  Possible options are:
     # "utxo" - keep full utxo set, that allows to validate arbitrary block and generate ADProofs
     # "digest" - keep state root hash only and validate transactions via ADProofs
@@ -38,28 +37,56 @@ ergo {
     offlineGeneration = false
 
     # Delay for miner after succesful block creation
-    miningDelay = 1s
+    miningDelay = 5s
+
+    # Number of state snapshot diffs to keep. Defines maximum rollback depth
+    keepVersions = 200
   }
 
   testing {
-    # Turn on transaction generator
+    # Whether to turn on transaction generator
     transactionGeneration = false
 
-    # If generator is enabled, it generates transactions when mempool size is smaller than keepPoolSize
-    keepPoolSize = 1
+    # Max number of transactions generated per a new block received
+    maxTransactionsPerBlock = 100
+  }
+
+  cache {
+    # Number of recently used modifiers that will be kept in memory
+    modifiersCacheSize = 1000
+
+    # Number of recently used indexes that will be kept in memory
+    indexesCacheSize = 10000
   }
 
   # Chain-specific settings. Change only if you are going to launch a new chain!
   chain {
+    # Network address prefix, currently reserved values are 0x00 (money chain mainnet) and 0x20 (32 in decimal,
+    # money chain testnet)
+    addressPrefix = 16
+
+    # Monetary config for chain
+    monetary {
+      # number of blocks reward won't change (525600 (2 years) for mainnet, 10080 (14 days) for testnet)
+      fixedRatePeriod = 10080
+      # number of coins issued every block during fixedRatePeriod (75 Ergo)
+      fixedRate = 7500000000
+      # number of blocks between reward reduction (64800 (90 days) for mainnet, 2160 (3 days) for testnet)
+      epochLength = 2160
+      # number of coins reward decrease every epochs (3 Ergo)
+      oneEpochReduction = 300000000
+      # Base16 representation of state roothash after genesis
+      afterGenesisStateDigestHex = "a8f724cef6f8a247a63fba1b713def858d97258f7cd5d7ed71489a474790db5501"
+    }
 
     # Desired time interval between blocks
-    blockInterval = 1m
+    blockInterval = 2m
 
     # length of an epoch in difficulty recalculation. 1 means difficulty recalculation every block
-    epochLength = 1
+    epochLength = 256
 
     # Number of last epochs that will  be used for difficulty recalculation
-    useLastEpochs = 100
+    useLastEpochs = 8
 
     # Proof-of-Work algorithm and its parameters. Possible options are "fake" and "equihash".
     powScheme {
@@ -67,145 +94,46 @@ ergo {
       n = 96 # used by Equihash
       k = 5  # used by Equihash
     }
+
+    # Defines an id of the genesis block. Other genesis blocks will be considered invalid.
+    # genesisId = "ab19bb59871e86507defb9a7769841b1130aad4d8c1ea8b0e01e0dee9e97a27e"
+  }
+
+  wallet {
+    # Seed the wallet private keys are derived from
+    seed = "C3FAFMC27697FAF29E9887F977BB5994"
+
+    # How many Schorr secret keys (w for the g^w public key) to generate
+    dlogSecretsNumber = 4
+
+    # Interval to re-scan uncertain boxes. When a block arrives, its transaction outputs are to be scanned, and if
+    # certain bytes are found in the output script (e.g. public key bytes), the box is to be put to a queue of a boxes
+    # which are potentially wallet's. But to be sure, script execution is needed, which could be costly to do in a bulk.
+    # So we check from a queue only one box per "scanningInterval".
+    scanningInterval = 1s
   }
 }
-
 scorex {
-
-  # Wallet settings
-  wallet {
-    # By default, the node will attempt to generate a new seed. To use a specific seed, uncomment the following line and
-    # specify your base58-encoded seed.
-    seed = "S"
-    # Password to protect wallet file
-    password = "scorex"
-    # Path to wallet folder
-    walletDir = ${user.home}"/wallet"
-  }
-
-  # Node data directory
-  dataDir = ${user.home}"/scorex"
-  # Node logs directory
-  logDir = ${scorex.dataDir}"/log"
-
-  # Node's REST API settings
-  restApi {
-    # Network address to bind to
-    bindAddress = "0.0.0.0:9051"
-
-    # Hash of API key string
-    # apiKeyHash = ""
-
-    # Enable/disable CORS support. This is an optional param.
-    # It would allow CORS in case if this setting is set.
-    # If you omit this setting then CORS will be prohibited.
-    corsAllowedOrigin = "*"
-
-    # request processing timeout
-    timeout = 5s
-  }
-
-  # P2P Network settings
   network {
-    # Node name to send during handshake
-    nodeName = "ergo-testnet"
-
-    # Network address
-    bindAddress = "0.0.0.0:9001"
-
-    # String with IP address and port to send as external address during handshake. Could be set automatically if UPnP
-    # is enabled.
-    #
-    # If `declared-address` is set, which is the common scenario for nodes running in the cloud, the node will just
-    # listen to incoming connections on `bindAddress:port` and broadcast its `declaredAddress` to its peers. UPnP
-    # is supposed to be disabled in this scenario.
-    #
-    # If declared address is not set and UPnP is not enabled, the node will not listen to incoming connections at all.
-    #
-    # If declared address is not set and UPnP is enabled, the node will attempt to connect to an IGD, retrieve its
-    # external IP address and configure the gateway to allow traffic through. If the node succeeds, the IGD's external
-    # IP address becomes the node's declared address.
-    #
-    # In some cases, you may both set `decalredAddress` and enable UPnP (e.g. when IGD can't reliably determine its
-    # external IP address). In such cases the node will attempt to configure an IGD to pass traffic from external port
-    # to `bind-address:port`. Please note, however, that this setup is not recommended.
-    # declaredAddress = ""
-
-    # Add delay for sending message
-    # addedMaxDelay = 0ms
-
-    networkChunkSize = 400
-
-    # Accept only local connections
-    localOnly = false
-
-    # List of IP addresses of well known nodes.
-    knownPeers = ["88.198.13.202:9001","139.59.254.126:9001","159.203.94.149:9001"]
-
-    # Number of network connections
-    maxConnections = 20
-
-    # Network connection timeout
-    connectionTimeout = 1s
-
-    # Enable UPnP tunnel creation only if you router/gateway supports it. Useful if your node is runnin in home
-    # network. Completely useless if you node is in cloud.
-    upnpEnabled = no
-
-    # UPnP timeouts
-    # upnp-gateway-timeout = 7s
-    # upnp-discover-timeout = 3s
-
-    # Network handshake timeout
-    handshakeTimeout = 2s
-
-    # Network delivery timeout
-    deliveryTimeout = 8s
-
-    maxDeliveryChecks =  2
-
-    # Network version send in handshake
-    appVersion = 0.2.1
-
-    # Network agent name
-    agentName = "ergoref"
-
-    # Maximum income package size
-    maxPacketLen = 1048576
-
-    # Accept maximum inv objects
-    maxInvObjects = 500
-
-    # Synchronization interval
+    bindAddress = "0.0.0.0:9006"
+    maxInvObjects = 400
+    nodeName = "ergo-testnet1"
+    knownPeers = ["178.128.162.150:9006", "78.46.93.239:9006", "209.97.136.204:9006", "209.97.138.187:9006", "209.97.134.210:9006", "88.198.13.202:9006"]
     syncInterval = 15s
-
-    # Synchronization interval for stable regime
-    syncIntervalStable = 20s
-
-    # Synchronization timeout
-    syncTimeout = 5s
-
-    # Synchronization status update interval
     syncStatusRefresh = 30s
-
-    # Synchronization status update interval for stable regime
+    syncIntervalStable = 20s
+    syncTimeout = 5s
     syncStatusRefreshStable = 1m
-
-    # Network controller timeout
-    controllerTimeout = 5s
+    deliveryTimeout = 8s
+    maxDeliveryChecks = 2
+    appVersion = 0.2.1
+    agentName = "ergoref"
+    maxModifiersCacheSize = 512
+    maxPacketSize = 2048576
   }
-
-  ntp {
-    # NTP server address
-    server = "pool.ntp.org"
-
-    # update time rate
-    updateEvery = 30m
-
-    # server answer timeout
-    timeout = 30s
+  restApi {
+    bindAddress = "0.0.0.0:9052"
   }
-
 }
 ```
 
