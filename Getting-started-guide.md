@@ -43,7 +43,5 @@ To run a node from `ergo-assembly-<version>.jar` binaries and `ergo.conf` confic
 $ java -jar ergo-assembly-<version>.jar ergo.conf
 ```
 
-To make sure node is running open `127.0.0.1:9052/info` in your browser, that will contain a general information about your node. You can use swagger `127.0.0.1:9052/swagger` to perform API requests and check full API [specification](https://github.com/ergoplatform/ergo/blob/master/src/main/resources/api/openapi.yaml) in openapi format.
-
-To access wallet api routes protected with `api_key` you should provide the secret youʼve configured earlier.
+To make sure node is running open `127.0.0.1:9052/info` in your browser, that will contain a general information about your node. You can use swagger `127.0.0.1:9052/swagger` to perform API requests and check full API [specification](https://github.com/ergoplatform/ergo/blob/master/src/main/resources/api/openapi.yaml) in openapi format. To access protected API routes, provide your secret in the request headers `[api_key, Content-Type]`, or click `Authorize` button in swagger and write down your secret there.
 
