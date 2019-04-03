@@ -27,6 +27,27 @@ ergo.wallet.seed = "Achtung!!! Replace this to any big enough string and keep it
 When your node will be synchronized with the network, you're ready to start mining.
 
 ## Configuring miner
+
 **!!!Attention!!! As far as Autolykos utilizes private keys never use untrusted mining software. Check that software is open-source and is validated by the community**
+
+Install your miner software from the list available:
+- [Cuda miner](https://github.com/ergoplatform/cuda-miner)~(Nvidia GPU only)
+
+Miner configuration file looks like:
+```
+{
+    "seed": "Achtung!!! Replace this to any big enough string and keep it in secret or you will get robbed", 
+    "node": "http://188.166.89.71:9052",
+    "keepPrehash": false
+}
+```
+where:
+- **seed** is the seed from your node configuration file or seed that allows to calculate private key for `miningPubKeyHex` specified in the condig
+- **node** is the URL of your node API
+- **keepPrehash** is an optimization parameter. If set `true`, miner will consume at most 8Gb of memory, if set to `false` miner will consume at most 4Gb of memory, but it's performance will be for about 25% lower.
+
+run your miner like `./auto.out config.json` end enjoy receiving block rewards!
+
+
 
 
