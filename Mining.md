@@ -1,8 +1,8 @@
 # Introduction
 
-Mining is the process of adding new blocks into the Ergo blockchain, by performing resource-intensive computations. 
+Mining is the process of adding new blocks into the Ergo blockchain by performing resource-intensive computations. 
 
-Ergo mining is based on [Autolykos](https://docs.ergoplatform.com/ErgoPow.pdf) Proof-of-Wok algorithm, that is designed to be ASIC and pool resistant. Miners should perform memory-hard computations~(at least 2 Gb of memory, but current most efficient implementation utilizes 4-8 Gb of RAM) that makes Ergo friendly for GPU mining. In addition, Autolykos require access to **private** keys, preventing mining pool formation. As soon as a correct solution is found, miner broadcasts a block with the correct solution and will be able to collect the block reward after 720 blocks delay using secret he used during mining. The rest of the network verifies the solution using miners **public** key and this verification may be done very efficient and requires less than a kilobyte of memory.
+Ergo mining is based on [Autolykos](https://docs.ergoplatform.com/ErgoPow.pdf), a Proof-of-Work algorithm designed to be ASIC and pool resistant. Miners should perform memory-hard computations~(at least 2 Gb of memory, but current most efficient implementation utilizes 4-8 GB of RAM) that makes Ergo friendly for GPU mining. In addition, Autolykos require access to **private** keys, preventing mining pool formation. As soon as a correct solution is found, miner broadcasts a block with the correct solution and will be able to collect the block reward after 720 blocks delay using secret he used during mining. The rest of the network verifies the solution using miners **public** key and this verification may be done very efficient and requires less than a kilobyte of memory.
 
 # How to mine Ergo
 
