@@ -1,4 +1,4 @@
-**This guide is outdated and should be actualized to current config format**
+**!!!Note!!! This guide is outdated and should be actualized to current config format**
 
 ## Actual for version 1.6.1
 
