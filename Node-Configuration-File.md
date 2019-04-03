@@ -1,3 +1,5 @@
+**This guide is outdated and should be actualized to current config format**
+
 ## Actual for version 1.6.1
 
 Below you can find a complete Ergo Node configuration file. This is the default configuration shipped with the application.
