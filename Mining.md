@@ -6,7 +6,7 @@ Ergo mining is based on [Autolykos](https://docs.ergoplatform.com/ErgoPow.pdf), 
 
 # How to mine Ergo
 
-Ergo mining requires configured and synchronized Ergo node, as well as at least one (but potentially as many as you wish) GPU to perform actual PoW computations.
+Ergo mining requires configured and synchronized Ergo node, as well as at least one (but potentially as many as you wish, you only need one Ergo node) GPU to perform actual PoW computations.
 
 ## Configuring a full node
 
