@@ -1,5 +1,5 @@
 ## Services
-- Testnet explorere: https://testnet.ergoplatform.com/
+- Testnet explorer (under re-construction): https://testnet.ergoplatform.com/
 
 ## Manuals
 - Full node set-up: https://git.io/fjqwx
