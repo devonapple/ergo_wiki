@@ -13,7 +13,7 @@ Various links that might be useful for developing libraries, services or applica
 
 ## Documents:
 - White paper: in progress
-- Yellow paper (in porogress): https://docs.ergoplatform.com/YellowPaper.pdf
+- Yellow paper (in progress): https://docs.ergoplatform.com/YellowPaper.pdf
 - Short overview: https://docs.ergoplatform.com/teaser.pdf
 - ErgoScript overview: https://docs.ergoplatform.com/ErgoScript.pdf
 - ErgoScript advanced: https://docs.ergoplatform.com/sigmastate_protocols.pdf
