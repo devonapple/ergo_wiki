@@ -15,8 +15,8 @@ Various links that might be useful for developing libraries, services or applica
 - White paper: in progress
 - Yellow paper (in progress): https://docs.ergoplatform.com/YellowPaper.pdf
 - Short overview: https://docs.ergoplatform.com/teaser.pdf
-- ErgoScript overview: https://docs.ergoplatform.com/ErgoScript.pdf
-- ErgoScript advanced: https://docs.ergoplatform.com/sigmastate_protocols.pdf
+- ErgoScript tutorial: https://docs.ergoplatform.com/ErgoScript.pdf
+- ErgoScript advanced tutorial: https://docs.ergoplatform.com/sigmastate_protocols.pdf
 - Autolykos PoW scheme specification: https://docs.ergoplatform.com/ErgoPow.pdf
 
 ## Sources:
