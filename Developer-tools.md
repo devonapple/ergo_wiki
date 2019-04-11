@@ -1,3 +1,5 @@
+## Services
+- Testnet explorere: https://testnet.ergoplatform.com/
 
 ## Manuals
 - Full node set-up: https://git.io/fjqwx
