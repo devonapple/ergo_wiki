@@ -19,6 +19,16 @@ Various links that might be useful for developing services and applications that
 - ErgoScript advanced: https://docs.ergoplatform.com/sigmastate_protocols.pdf
 - Autolykos PoW scheme specification: https://docs.ergoplatform.com/ErgoPow.pdf
 
+## Sources:
+- Main repository: https://github.com/ergoplatform/ergo
+- Base framework: https://github.com/scorexfoundation/scorex
+
+## Libraries:
+
+**Scala:**
+- Smart contract language: https://github.com/ScorexFoundation/sigmastate-interpreter
+- Basic cryptography library: https://github.com/input-output-hk/scrypto
+
 ## Test vectors:
 - Ergo transaction serialization: https://git.io/fjqwX
 - Signature scheme: https://git.io/fjqwH
