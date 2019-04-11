@@ -12,7 +12,7 @@ Various links that might be useful for developing libraries, services or applica
 - Explorer API: https://git.io/fjqwN
 
 ## Documents:
-- White paper: in porogress
+- White paper: in progress
 - Yellow paper (in porogress): https://docs.ergoplatform.com/YellowPaper.pdf
 - Short overview: https://docs.ergoplatform.com/teaser.pdf
 - ErgoScript overview: https://docs.ergoplatform.com/ErgoScript.pdf
