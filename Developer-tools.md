@@ -1,4 +1,4 @@
-Various links that might be useful for developing services and applications that use Ergo.
+Various links that might be useful for developing libraries, services or applications that use Ergo.
 
 ## Services
 - Testnet explorer (under re-construction): https://testnet.ergoplatform.com/
