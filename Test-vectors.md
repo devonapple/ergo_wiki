@@ -1,5 +1,7 @@
 # Secret → PublicKey → P2PKAddress derivation
 
+All examples are Base58-encoded.
+
 ```json
 {
   "sk": "HU56FxBMCpsMybo5iX8khduFQmQUptyJPqZEEvB8rzoq",
