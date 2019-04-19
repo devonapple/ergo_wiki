@@ -1,6 +1,6 @@
-# Secret → PublicKey → P2PKAddress derivation
-
 All examples are Base58-encoded.
+
+# Secret → PublicKey → P2PKAddress derivation
 
 ```json
 {
