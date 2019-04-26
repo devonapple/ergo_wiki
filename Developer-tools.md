@@ -28,6 +28,7 @@ Various links that might be useful for developing libraries, services or applica
 **Scala:**
 - Smart contract language: https://github.com/ScorexFoundation/sigmastate-interpreter
 - Basic cryptography library: https://github.com/input-output-hk/scrypto
+- JS library: https://github.com/ergoplatform/ergo-js
 
 ## Test vectors:
 - Ergo transaction serialization: https://git.io/fjqwX
