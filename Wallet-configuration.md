@@ -14,4 +14,4 @@ All the interactions with wallet interface at this stage could only be done thro
     * Restore wallet from existing seed. Choosing this option you have to provide your mnemonic phrase - POST, `/wallet/restore`, `body: {"pass": "123abc", "mnemonic": "abandon abandon ...", "mnemonicPass": "098cba"}` (Note: `mnemonicPass` field is required only in case your mnemonic phrase was protected by additional password at creation)
 2. When wallet is initialized it needs to be unlocked - POST, `/wallet/unlock`, 'body: {"pass": "123abc"}'. (Note: use password you chosen at initialization stage)
 
-Evaluate `2.` every time node is restarted or wallet is locked.
+Evaluate `2.` every time the node is restarted or the wallet is locked.
