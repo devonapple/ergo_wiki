@@ -30,7 +30,7 @@ Letʼs now take a few important steps:
 ```
 scorex.restApi.apiKeyHash = "1111"
 ```
-It is a Blake2b hash from your secret phrase that will be used to authenticate your API requests. You can use this [script](https://gist.github.com/oskin1/704ef3fba8d40bb1e7691919bf1e9cf9/) or any other script to calculate blake2b hash for that purpose (but please ensure that your secret phrase remains secret and is not sent to any untrusted services).
+It is a Blake2b256 hash from your secret phrase that will be used to authenticate your API requests. You can use this [script](https://gist.github.com/oskin1/704ef3fba8d40bb1e7691919bf1e9cf9/) or any other script to calculate blake2b hash for that purpose (but please ensure that your secret phrase remains secret and is not sent to any untrusted services).
 
 ## Running Ergo node
 
