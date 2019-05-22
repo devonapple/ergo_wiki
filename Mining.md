@@ -20,7 +20,7 @@ If you already have a private/public key pair, you may specify your public key o
 ```
 ergo.mining.miningPubKeyHex = "11aa...FF"
 ```
-otherwise, the node will use the first public from build-in wallet to form blocks for an external miner, in such a case don't forget to replace you seed phrase in the config:
+otherwise, the node will use the first public key from build-in wallet to form blocks for an external miner, in such a case don't forget to replace you seed phrase in the config:
 ```
 ergo.wallet.seed = "Achtung!!! Replace this to any big enough string and keep it in secret or you will get robbed"
 ```
