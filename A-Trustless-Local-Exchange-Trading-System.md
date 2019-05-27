@@ -91,43 +91,43 @@ Compared to the managed LETS, the above system has the following differences:
 * **No membership record**: Unlike the managed LETS, We don't store any membership information here. 
 * **Multiple-boxes**: A person can create multiple membership boxes, which is permitted. We only require each box to have a minimum number of ergs locked in it. 
 
-### LETS-1: Basic variant
+### LETS-1: Zero Sum, Collateral
 
 The above is the basic variant, which we call **LETS-1**. It has the following features:
-* **Zero Sum**: The sum of the LETS balances of all member boxes is zero.
-* **Time-locked ergs**: Ergs are needed to create a box and are locked until a certain time.
-* **Collateral**: Ergs are used as collateral to cover negative LETS balance. The number of ergs locked by a sender must cover the negative LETS balance in the corresponding output.
+* **Time-locked Joining-Fee**: To prevent spam attacks, a member has to pay a certain minimum fee in ergs at the time of joining. This fee is refundable but only after a predefined number of blocks.
+* **Zero Sum**: The sum of the LETS balances of all member boxes is zero. Member boxes are allowed to have a negative balance as long as it is within a certain value.  
+* **Collateral**: For the sender's output, ergs are used as collateral to cover negative LETS balance at the current exchange rate.
 
 We can tweak the above basic LETS as follows. 
 
 ### LETS-2: Zero Sum, No collateral
 
 It has the following features
-* **Zero Sum**: The sum of the LETS balances of all member boxes is zero.
-* **Non-refundable ergs**: Ergs are needed to join the system and are never returned.
-* **No-collateral**: Negative balance does not need collateral but is capped to a certain maximum.
+* **Non-refundable joining fee**: Similar to LETS-1, a joining fee is needed to prevent spam attacks. However, unlike LETS-1, this joining fee is non-refundable and must be sent to some predefined management committee.
+* **Zero Sum**: As in LETS-1.
 
 The difference from LETS-1 is that a member must spend a certain minimum number of ergs as a joining fee, paid to some predefined committee address at the time of box creation. The balance of a newly created box is again zero as in LETS-1.
 
-### LETS-3: Positive Sum, Time-locked Ergs
+### LETS-3: Positive-Sum, Collateral
 
 The above two variations require the total LETS balance to be always zero. This variant requires all members to have a positive (or zero) LETS balance.
 The key difference is that: 
 
-* **Positive Sum**: The sum of the LETS balances of all member boxes is positive.
-* **Non-negative member balance**: The LETS balance of every member must be non-negative. 
-* **Time-locked ergs**: When joining, a member must put in at least a certain number of ergs. The LETS balance of the box is set to a positive value based on the value of ergs at that time. The ergs are locked for a certain minimum amount of time and can be withdrawn thereafter in exchange for the LETS balance at the current rate. 
+* **Time-locked Joining Fee**: As in LETS-1.
+* **Positive Sum**: The LETS balance of every member must always be non-negative. This ensures that The sum of the LETS balances of all member boxes is positive. The initial LETS balance is set to a positive value based on the joining fee at the current rate, capped to some maximum value.
+* **Collateral**: Any reduction in ergs balance of the sender must be accompanied by a reduction of the corresponding LETS balance at the current exchange rate. 
 
-### LETS-4: Positive Sum, Joining Fee
+We can also allow topping up the LETS balance during a transaction by adding the equivalent amount of ergs. 
+
+### LETS-4: Positive-Sum, No collateral
 
 This is similar to LETS-3 but with some small variations:
-* **Positive Sum**: The sum of the LETS balances of all member boxes is positive.
-* **Non-negative member balance**: The LETS balance of every member must be non-negative. 
-* **Non-refundable ergs**: When joining, a member pays at least a certain number of ergs as joining fee. The newly created membership box has a positive LETS balance as per the value of ergs at that time. The ergs are sent to a committee address as in LETS-2.  
+* **Non-refundable Joining Fee**: As in LETS-2
+* **Positive-Sum**: As in LETS-3
 
 The following table summarizes the variants:
 
 |   |Zero Sum|Positive Sum|
 |---|---|---|
-|**Time-locked ergs**|LETS-1|LETS-3|
-|**Non-refundable ergs**|LETS-2|LETS-4|
+|**Collateral**|LETS-1|LETS-3|
+|**No collateral**|LETS-2|LETS-4|
