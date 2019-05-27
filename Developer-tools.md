@@ -3,6 +3,9 @@ Various links that might be useful for developing libraries, services or applica
 ## Services
 - Testnet explorer (under re-construction): https://testnet.ergoplatform.com/
 
+## Addresses
+Actual info about testnet and mainnet addresses schema is located here: [ErgoAddress.scala](https://github.com/ScorexFoundation/sigmastate-interpreter/blob/master/src/main/scala/org/ergoplatform/ErgoAddress.scala#L17)
+
 ## Manuals
 - Full node set-up: https://git.io/fjqwx
 - Start mining: https://git.io/fjqwp
