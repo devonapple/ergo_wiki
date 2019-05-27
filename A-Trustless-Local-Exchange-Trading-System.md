@@ -98,20 +98,17 @@ The above is the basic variant, which we call **LETS-1**. It has the following f
 * **Zero Sum**: The sum of the LETS balances of all member boxes is zero. Member boxes are allowed to have a negative balance as long as it is within a certain value.  
 * **Collateral**: For the sender's output, ergs are used as collateral to cover negative LETS balance at the current exchange rate.
 
-We can tweak the above basic LETS as follows. 
+The following are some variations of LETS-1. 
 
 ### LETS-2: Zero Sum, No collateral
 
-It has the following features
-* **Non-refundable joining fee**: Similar to LETS-1, a joining fee is needed to prevent spam attacks. However, unlike LETS-1, this joining fee is non-refundable and must be sent to some predefined management committee.
+This is a slight variation of LETS-1 as follows:
+* **Non-refundable joining fee**: Similar to LETS-1, a joining fee is needed to prevent spam attacks. However, unlike LETS-1, this fee is non-refundable and must be sent to some predefined management committee.
 * **Zero Sum**: As in LETS-1.
-
-The difference from LETS-1 is that a member must spend a certain minimum number of ergs as a joining fee, paid to some predefined committee address at the time of box creation. The balance of a newly created box is again zero as in LETS-1.
 
 ### LETS-3: Positive-Sum, Collateral
 
-The above two variations require the total LETS balance to be always zero. This variant requires all members to have a positive (or zero) LETS balance.
-The key difference is that: 
+The above two variants require the total LETS balance to be always zero. Here we consider a positive value for this sum. In particular, this variant has the following properties:
 
 * **Time-locked Joining Fee**: As in LETS-1.
 * **Positive Sum**: The LETS balance of every member must always be non-negative. This ensures that The sum of the LETS balances of all member boxes is positive. The initial LETS balance is set to a positive value based on the joining fee at the current rate, capped to some maximum value.
