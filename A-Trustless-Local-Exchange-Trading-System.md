@@ -111,7 +111,7 @@ This is a slight variation of LETS-1 as follows:
 The above two variants require the total LETS balance to be always zero. Here we consider a positive value for this sum. In particular, this variant has the following properties:
 
 * **Time-locked Joining Fee**: As in LETS-1.
-* **Positive Sum**: The LETS balance of every member must always be non-negative. This ensures that The sum of the LETS balances of all member boxes is positive. The initial LETS balance is set to a positive value based on the joining fee at the current rate, capped to some maximum value.
+* **Positive Sum**: The LETS balance of every member must always be non-negative. This ensures that the sum of the LETS balances of all member boxes is positive. The initial LETS balance is set to a positive value based on the joining fee at the current rate, capped to some maximum value.
 * **Collateral**: Any reduction in ergs balance of the sender must be accompanied by a reduction of the corresponding LETS balance at the current exchange rate. 
 
 We can also allow topping up the LETS balance during a transaction by adding the equivalent amount of ergs. 
