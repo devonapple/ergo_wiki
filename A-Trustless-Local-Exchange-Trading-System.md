@@ -95,7 +95,7 @@ Compared to the managed LETS, the above system has the following differences:
 
 The above is the basic variant, which we call **LETS-1**. It has the following features:
 * **Time-locked Joining-Fee**: To prevent spam attacks, a member has to pay a certain minimum fee in ergs at the time of joining. This fee is refundable but only after a predefined number of blocks.
-* **Zero Sum**: The sum of the LETS balances of all member boxes is zero. Member boxes are allowed to have a negative balance as long as it is within a certain value.  
+* **Zero Sum**: The sum of the LETS balances of all member boxes is zero. Member boxes are allowed to have a negative balance as long as it is within a certain limit.  
 * **Collateral**: For the sender's output, ergs are used as collateral to cover negative LETS balance at the current exchange rate.
 
 The following are some variations of LETS-1. 
