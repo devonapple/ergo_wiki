@@ -16,7 +16,7 @@ ergo.mining.mining = true
 ergo.mining.useExternalMiner = true
 ```
 
-If you already have a private/public key pair, you may specify your public key or address in your config:
+If you already have a private/public key pair, you may specify your public key or address in your node config:
 ```
 ergo.mining.miningPubKeyHex = "11aa...FF"
 ```
@@ -34,7 +34,7 @@ Install your miner software from the list available:
 Miner configuration file looks like this:
 ```
 {
-    "seed": "Achtung!!! Replace this to any big enough string and keep it in secret or you will get robbed", 
+    "seed": "Attention!!! Replace this with your mnemonic sentence and keep it secret or you will get robbed", 
     "node": "http://188.166.89.71:9052",
     "keepPrehash": false
 }
