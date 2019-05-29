@@ -62,10 +62,10 @@ A LETS member's box is protected by the script below, whose hash `memberBoxScrip
 	// the receiver's output box also contains the same amount of ergs as input
 	val receiver = outBalance > inBalance && out.value == SELF.value
 
-	val getLetsBalance = {(b:Box) => b.R4[Long].get} // returns LETS balance of a box
+	val getBalance = {(b:Box) => b.R4[Long].get} // returns LETS balance of a box
 
-	val letsBalIn = letsInputs.map(getLetsBalance).fold(0L, {(l:Long, r:Long) => l + r})
-	val letsBalOut = letsOutputs.map(getLetsBalance).fold(0L, {(l:Long, r:Long) => l + r})
+	val letsBalIn = letsInputs.map(getBalance).fold(0L, {(l:Long, r:Long) => l + r})
+	val letsBalOut = letsOutputs.map(getBalance).fold(0L, {(l:Long, r:Long) => l + r})
 
 	// sender box can contain less amount of ergs (sender may withdraw ergs provided 
 	// that any negative LETS balance of sender in out is backed by sufficient ergs)
