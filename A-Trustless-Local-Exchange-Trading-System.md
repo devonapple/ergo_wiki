@@ -1,28 +1,31 @@
-A Local Exchange Trading System (LETS) is aimed at developing local economy and is usually used by people of a locality in the vicinity of each other. A committee managed LETS is described at [this link](https://github.com/ergoplatform/ergo/wiki/A-Local-Exchange-Trading-System-On-Top-Of-Ergo). We call such a system a _managed_ or _permissioned_, since it depends on a trusted committee. Here we describe a **trustless** LETS system, i.e., one where there is no management committee. 
+A Local Exchange Trading System (LETS) is aimed at developing local economy and is usually used by people of a locality in the vicinity of each other. For a brief overview of LETS see this [this article](https://github.com/ergoplatform/ergo/wiki/A-Local-Exchange-Trading-System-On-Top-Of-Ergo), which also describes an ErgoScript implementation of A committee managed LETS. We call such a system a _managed_ or _permissioned_, since it depends on a committee of trusted members to enroll new members into the LETS. 
+Here we describe a **trustless** LETS system, i.e., one where there is no management committee needed for enrolment. 
 
 ## Overview
 
-LETS involves several parties that agree to use some form of "local currency", usually pegged to the country's main currency at a 1:1 rate. Assume that our LETS is based in a European country where the currency is Euros, and the exchange is done in "local Euros", which are considered to be equivalent to national Euros.
+A LETS involves several parties that agree to use some form of "local currency", usually pegged to the country's main currency at a 1:1 rate. Assume that our LETS is based in a European country where the currency is euros, and the exchange is done in "local euros", which are considered to be equivalent to national euros.
 
-Each user in LETS has an _account_, which contains the LETS balance of that user (in Local Euros). On joining, each user has a balance of zero. The balance is stored in a (possibly decentralized) ledger. An interesting feature of LETS is that a user with zero balance can also "withdraw" money, but only for paying another LETS user. At any time the sum of LETS balances of all the users is zero.
+Each user in LETS has an _account_, which contains the LETS balance of that user (in Local euros). On joining, each user has a balance of zero. The balance is stored in a (possibly decentralized) ledger. An interesting feature of LETS is that a user with zero balance can also "withdraw" money, but only for paying another LETS user. At any time the sum of LETS balances of all the users is zero.
 
-As an example, Alice with zero balance wishes to purchase one liter of milk for 2 Euros from Bob who is also a member of LETS with zero balance. She transfers 2 Euros from her account to Bob's, making her balance -2 and Bob's +2. Bob can then transfer some or all of his balance to another LETS user in exchange for goods or services. 
+As an example, Alice with zero balance wishes to purchase one liter of milk for 2 euros from Bob who is also a member of LETS with zero balance. She transfers 2 euros from her account to Bob's, making her balance -2 and Bob's +2. Bob can then transfer some or all of his balance to another LETS user in exchange for goods or services. 
 
 ## Trustless LETS
 
-Since we desire a trustless LETS, we cannot depend on any trusted group of people to admit users. 
-We will assume a _rate oracle_ identified by some global id and a singleton box containing exactly one token with this id. This box also contains the rate of Ergs to Euros at any given period of time. The rate is updated by spending this box and creating another singleton box with the new rate.
+Since we desire a trustless LETS, we cannot depend on any trusted group of people to admit users. Note that we will still have a committee to perform some tasks such as setting up the LETS parameters (local currency, the maximum number of members, etc) and consuming any joining fee.
 
-At any instance, our LETS is defined by a global _LETS token box_ that contains some LETS membership tokens. This box is protected by the script given below. The token ID uniquely defines the attributes of the LETS in use, such as the location, the currency unit, the rate oracle ID, etc. 
+We will only assume a trusted _pricing oracle_ that gives the current rate of euros to ergs identified by some global id (`rateTokenID`) and a singleton box containing exactly one token with this id. This box also contains the rate of ergs to euros at any given period of time. The rate is updated by spending this box and creating another singleton box with the new rate.
+
+At any instance, our LETS is defined by a global _LETS token box_ that contains some LETS membership tokens. This box is protected by the script given below. The token ID uniquely defines the attributes of the LETS in use, such as the location, the currency unit, the pricing oracle's ID, etc. 
 One or more users can spend this box and create their individual LETS boxes as outputs of the transaction. The box is initially started with, say, 10000 LETS membership tokens. 
 
-A LETS box represents a LETS member and must be used for a LETS transaction. A LETS transaction is between two LETS members, one being the sender and the other the receiver, such that the sender transfers some positive amount of the LETS currency (local Euros) to the receiver. Such a transaction consumes the member's boxes and recreates them as output with the updated balance.   
+A LETS box represents a LETS member and must be used for a LETS transaction. A LETS transaction is between two LETS members, one being the sender and the other the receiver, such that the sender transfers some positive amount of the LETS currency (local euros) to the receiver. Such a transaction consumes the member's boxes and recreates them as output with the updated balance.   
 
 ### The Basic Variant
 To prevent spam and DDoS attacks, we require at least some minimum number of ergs (`minErgsToJoin`) to be locked in the newly created member's box. The ergs will be locked until at least `minWithdrawTime` number of blocks have been mined. A box is allowed to have a negative LETS balance upto the amount that can be covered by the locked ergs (using the rate at the time of trade). 
 
-	// a tokenBox stores the membership tokens.
-	val tokenBox = OUTPUTS(0) // first output contains remaining LETS tokens
+	// a tokenBox stores the membership tokens and has this script
+	val tokenBox = OUTPUTS(0) // the first output must also be a tokenBox
+	// first output contains remaining LETS tokens
 	def isLets(b:Box) = {
 	   // A LETS box must have exactly 1 membership token in tokens(0)
 	   b.tokens(0)._1 == letsTokenID && b.tokens(0)._2 == 1 &&
@@ -32,10 +35,10 @@ To prevent spam and DDoS attacks, we require at least some minimum number of erg
 	   b.R6[Long].get <= HEIGHT // store the creation height in R6
 	}
 
-	// how many lets boxes creared in the tx
+	// how many lets boxes creared in the tx?
 	val numLetsBoxes = OUTPUTS.filter({(b:Box) => isLets(b)}).size
 
-	// In the transaction following is preserved for the token box ...
+	// In a transaction, the following are preserved for the token box ...
 	tokenBox.tokens(0)._1 == SELF.tokens(0)._1 &&                //  token id
 	tokenBox.tokens(0)._2 == SELF.tokens(0)._2 - numLetsBoxes && //  quantity
 	tokenBox.propositionBytes == SELF.propositionBytes           //  script
