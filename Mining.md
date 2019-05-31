@@ -12,13 +12,13 @@ Ergo mining requires one configured and synchronized Ergo node and at least one 
 
 To configure a full node check this [manual](https://github.com/ergoplatform/ergo/wiki/Set-up-a-full-node). To support an external miner (which is what we will be using), you should have the following settings in your config file:
 ```
-ergo.mining.mining = true
-ergo.mining.useExternalMiner = true
+ergo.node.mining = true
+ergo.node.useExternalMiner = true
 ```
 
 If you already have a private/public key pair, you may specify your public key or address in your node config:
 ```
-ergo.mining.miningPubKeyHex = "11aa...FF"
+ergo.node.miningPubKeyHex = "11aa...FF"
 ```
 If this parameter is not present, the node will use the first public key from the built-in wallet to form blocks for the external miner. 
 
