@@ -53,3 +53,17 @@ The node provides a REST API as described [here](https://github.com/ergoplatform
 
 You can use Swagger to perform API requests by visiting [`127.0.0.1:9052/swagger`](http://127.0.0.1:9052/swagger). Full API specification (in OpenAPI format) is available [here](https://github.com/ergoplatform/ergo/blob/master/src/main/resources/api/openapi.yaml). To access protected API routes, provide your secret phrase (created above) in the request headers `[api_key, Content-Type]`, or click the `Authorize` button in Swagger and enter your secret phrase there.
 
+## Turning off console printing
+
+By default, the Ergo node will print a lot of debugging information. This can be disabled by editing the `logback.xml` in `src/main/resources` and recompiling (or editing the XML file inside the jar directly). The following sections need to be edited:
+
+```
+<root level="WARN"> <!-- other options are TRACE, ERROR -->
+   <appender-ref ref="STDOUT"/> <!-- remove this line to disable all printing -->
+   <appender-ref ref="FILE"/>
+</root>
+```
+
+It is also possible to set desired parameters when running a node, as in: 
+   
+   `java -jar ergo-assembly-<version>.jar ergo.conf -Dlogback.stdout.level=ERROR`
