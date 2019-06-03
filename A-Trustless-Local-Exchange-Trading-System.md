@@ -1,4 +1,4 @@
-A Local Exchange Trading System (LETS) is aimed at developing local economy and is usually used by people of a locality in the vicinity of each other. For a brief overview of LETS see this [this article](https://github.com/ergoplatform/ergo/wiki/A-Local-Exchange-Trading-System-On-Top-Of-Ergo), which also describes an ErgoScript implementation of a committee managed LETS. We call such a system a _managed_ or _permissioned_, since it depends on a committee of trusted members to enroll new members into the LETS. 
+A Local Exchange Trading System (LETS) is aimed at developing local economy and is usually used by people of a locality in the vicinity of each other. For a brief overview of LETS see [this article](https://github.com/ergoplatform/ergo/wiki/A-Local-Exchange-Trading-System-On-Top-Of-Ergo), which also describes an ErgoScript implementation of a committee managed LETS. We call such a system a _managed_ or _permissioned_, since it depends on a committee of trusted members to enroll new members into the LETS. 
 Here we describe a **trustless** LETS system, i.e., one where there is no management committee needed for enrolment. 
 
 ## Overview
@@ -15,7 +15,7 @@ Since we desire a trustless LETS, we cannot depend on any trusted group of peopl
 
 We will only assume a trusted _pricing oracle_ that gives the current rate of euros to ergs identified by some global id (`rateTokenID`) and a singleton box containing exactly one token with this id. This box also contains the rate of ergs to euros at any given period of time. The rate is updated by spending this box and creating another singleton box with the new rate.
 
-At any instance, our LETS is uniquely defined by a global _LETS token box_ that contains some LETS membership tokens with id `letsTokenID`. This box defines the LETS parameters such as the location, the currency unit, `rateTokenID`, etc. The token box is initially started with, say, 10000 LETS membership tokens. One or more users can spend this box and create their individual _LETS boxes_ as outputs of the transaction. 
+At any instance, our LETS is uniquely defined by a global _token box_ that contains some LETS membership tokens with id `letsTokenID`. This box defines the LETS parameters such as the location, the currency unit, `rateTokenID`, etc. The token box is initially started with, say, 10000 LETS membership tokens. One or more users can spend this box and create their individual _LETS boxes_ as outputs of the transaction. 
 
 A LETS box represents a LETS member and must be used for a LETS transaction. A LETS transaction is between two LETS members, one being the sender and the other the receiver, such that the sender transfers some positive amount of the LETS currency (local euros) to the receiver. Such a transaction consumes the member's boxes and recreates them as output with the updated balance.   
 
