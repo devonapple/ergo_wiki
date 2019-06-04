@@ -33,4 +33,10 @@ In particular, the wallet must be unlocked for the following operations:
 
 A wallet is automatically locked after some time, which means that all currently loaded secrets are flushed from the memory. You can also use the REST API to lock the wallet by making a `GET` request to `/wallet/lock`. 
 It is recommended to lock the wallet when it is not in use. 
-After locking, you will need to unlock the wallet to use it again. 
+After locking, you will need to unlock the wallet to use it again.
+
+## Managing keys
+
+A wallet implements BIP32 ("Hierarchical deterministic wallets"). When the wallet is initialized the only root key is created.
+In order to derive additional key pair corresponding to a specific derivation path (method: POST, request body: `{"derivationPath": "m/1/2"}`) the `/wallet/deriveKey` API route can be used.
+In order to simply create additional key pair use a `/wallet/deriveNextKey` API route (method: GET).
