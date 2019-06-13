@@ -17,7 +17,7 @@ To run an Ergo node you need JRE version >= 8 to be installed. One way to instal
 When the environment is ready it is time to download the latest [Ergo client release](https://github.com/ergoplatform/ergo/releases/) and create a configuration file.
 Note that instead of downloading the jar, you can clone the repository and create the jar yourself using [SBT](https://www.scala-sbt.org/) by issuing the `sbt assembly` command.
 
-All configuration parameters are described in the [default configuration file](https://github.com/ergoplatform/ergo/blob/master/src/main/resources/application.conf). In your configuration file, you only need to rewrite parameters that you want to change from the default values. As an example, you can check the [sample configuration file](https://github.com/ergoplatform/ergo/blob/master/src/main/resources/nodeTestnet/application.conf) for the latest testnet which contains only the important parameters. Note that when using the latter file, you must remove or comment out the following lines in the file: 
+All configuration parameters are described in the [default configuration file](https://github.com/ergoplatform/ergo/blob/master/src/main/resources/reference.conf). In your configuration file, you only need to rewrite parameters that you want to change from the default values. As an example, you can check the [sample configuration file](https://github.com/ergoplatform/ergo/blob/master/src/main/resources/nodeTestnet/application.conf) for the latest testnet which contains only the important parameters. Note that when using the latter file, you must remove or comment out the following lines in the file: 
 
 ```
 testMnemonic = ...
