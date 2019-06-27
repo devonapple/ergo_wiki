@@ -46,9 +46,9 @@ Details of wallet are described [here](https://github.com/ergoplatform/ergo/wiki
 
 ## Running the Ergo node
 
-To run a node from `ergo-assembly-<version>.jar` binary and `ergo.conf` configuration file execute:
+To run a node from `ergo-<version>.jar` binary with `ergo.conf` configuration file and `testnet` (`mainnet` for main network and `devnet` for dev network are also available options) environment execute:
 ```
-$ java -jar -Xmx3G ergo-assembly-<version>.jar ergo.conf
+$ java -jar -Xmx3G ergo-<version>.jar --testnet -c ergo.conf
 ```
 
 To make sure the node is running, open [`127.0.0.1:9052/info`](http://127.0.0.1:9052/info) in your browser. This will return general information about your node. 
