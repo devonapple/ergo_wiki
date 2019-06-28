@@ -71,4 +71,4 @@ By default, the Ergo node will print a lot of debugging information. This can be
 
 It is also possible to set desired parameters when running a node, as in: 
    
-   `java -jar ergo-assembly-<version>.jar ergo.conf -Dlogback.stdout.level=ERROR`
+   `java -jar -Xmx3G -Dlogback.stdout.level=ERROR` ergo-<version>.jar --testnet -c ergo.conf 
