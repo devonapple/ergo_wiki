@@ -1,7 +1,8 @@
 Various links that might be useful for developing libraries, services or applications that use Ergo.
 
 ## Services
-- Testnet explorer (under re-construction): https://testnet.ergoplatform.com/
+- Mainnet explorer: https://explorer.ergoplatform.com/
+- Testnet explorer: https://testnet.ergoplatform.com/
 
 ## Addresses
 Actual info about testnet and mainnet addresses schema is located here: [ErgoAddress.scala](https://github.com/ScorexFoundation/sigmastate-interpreter/blob/master/src/main/scala/org/ergoplatform/ErgoAddress.scala#L17)
