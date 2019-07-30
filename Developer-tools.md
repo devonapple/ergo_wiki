@@ -16,7 +16,7 @@ Actual info about testnet and mainnet addresses schema is located here: [ErgoAdd
 - Explorer API: https://git.io/fjqwN
 
 ## Documents:
-- White paper: in progress
+- White paper: https://docs.ergoplatform.com/whitepaper.pdf
 - Yellow paper (in progress): https://docs.ergoplatform.com/YellowPaper.pdf
 - Short overview: https://docs.ergoplatform.com/teaser.pdf
 - ErgoScript tutorial: https://docs.ergoplatform.com/ErgoScript.pdf
