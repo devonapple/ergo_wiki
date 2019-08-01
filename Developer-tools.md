@@ -5,7 +5,7 @@ Various links that might be useful for developing libraries, services or applica
 - Testnet explorer: https://testnet.ergoplatform.com/
 
 ## Addresses
-An article on address schemas is at [Ergo Platform Blog](https://ergoplatform.org/en/blog/2019_07_24_ergo_address/)
+An article on address schemas is on [Ergo Platform Blog](https://ergoplatform.org/en/blog/2019_07_24_ergo_address/)
 
 ## Manuals
 - Full node set-up: https://git.io/fjqwx
